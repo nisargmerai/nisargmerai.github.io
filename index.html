@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nisarg Merai - Online Resume</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter (or similar for a clean look) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a; /* Matte black background */
+            color: #f5f5f5; /* Light gray/off-white text for contrast */
+            line-height: 1.6;
+            /* Subtle radial gradient for depth on dark background */
+            background-image: radial-gradient(circle at top left, #2c2c2c, #1a1a1a);
+            background-attachment: fixed; /* Keep background fixed during scroll */
+        }
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+            gap: 20px;
+        }
+        @media (min-width: 1024px) { /* Large screens for two-column layout */
+            .main-container {
+                flex-direction: row;
+                padding: 40px;
+            }
+        }
+        .sidebar {
+            background-color: #2b2b2b; /* Dark gray for sidebar */
+            border-radius: 15px;
+            /* Enhanced shadow for depth */
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25); /* Darker shadow for dark background */
+            padding: 30px;
+            text-align: center;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+        @media (min-width: 1024px) {
+            .sidebar {
+                width: 300px; /* Fixed width for sidebar on large screens */
+                position: sticky; /* Sticky sidebar */
+                top: 40px; /* Adjust as needed */
+                height: fit-content; /* Fit content height */
+            }
+        }
+        .content-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .content-card {
+            background-color: #2b2b2b; /* Dark gray for content cards */
+            border-radius: 15px;
+            /* Enhanced shadow for depth */
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25); /* Darker shadow for dark background */
+            padding: 30px;
+        }
+        .section-title {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            color: #f5f5f5; /* White for section titles */
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px; /* Underline length */
+            height: 4px;
+            background-color: #ffd700; /* Golden accent */
+            border-radius: 9999px;
+        }
+        /* Ensure all text within these sections is white or very light gray */
+        .skill-category h3 {
+            color: #f5f5f5; /* White for skill category headlines */
+        }
+        .skill-list li {
+            color: #f5f5f5; /* White for skill items */
+        }
+        .experience-item h3 {
+            color: #f5f5f5; /* White for experience titles */
+        }
+        .experience-item p {
+            color: #e0e0e0; /* Slightly off-white for details like dates and company */
+        }
+        .experience-item ul li {
+            color: #f5f5f5; /* White for list items */
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #333333; /* Darker track */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #666666; /* Gray thumb */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #888888; /* Lighter gray on hover */
+        }
+
+        /* Profile image styling */
+        .profile-img {
+            border: 5px solid #ffd700; /* Golden border */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Stronger shadow for dark theme */
+        }
+
+        /* Text colors for various elements - overridden to white/light gray */
+        .text-gray-800 { color: #f5f5f5 !important; } /* Changed to white */
+        .text-gray-600 { color: #e0e0e0 !important; } /* Changed to light gray */
+        .text-gray-700 { color: #f5f5f5 !important; } /* Changed to white */
+        .text-gray-500 { color: #e0e0e0 !important; } /* Changed to light gray */
+
+        /* Link and button colors */
+        .hover\:text-purple-700:hover { color: #ffd700 !important; } /* Golden hover for links */
+        .text-purple-600 { color: #ffd700 !important; } /* Golden for links */
+        /* Adjusted button text color to black for better contrast on golden background */
+        .bg-purple-700 {
+            background-color: #ffd700 !important; /* Golden button */
+            color: #1a1a1a !important; /* Black text for readability */
+        }
+        .hover\:bg-purple-800:hover { background-color: #e6c200 !important; } /* Darker golden on hover */
+    </style>
+</head>
+<body class="antialiased">
+    <div class="main-container">
+        <!-- Sidebar / Left Column -->
+        <aside class="sidebar">
+            <div class="mb-8">
+                <!-- Profile image with enhanced styling -->
+                <img src="https://placehold.co/150x150/333/ffd700?text=Profile" alt="Nisarg Merai" class="rounded-full mx-auto mb-4 shadow-lg profile-img">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Nisarg Merai</h2>
+                <p class="text-lg text-gray-600">Systems Engineer - Data Engineer</p>
+            </div>
+
+            <nav class="mb-8">
+                <ul class="space-y-3">
+                    <li><a href="#about" class="flex items-center justify-center space-x-3 text-gray-700 hover:text-purple-700 font-medium transition-colors duration-200 p-2 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-user"></i> <span>About</span>
+                    </a></li>
+                    <li><a href="#resume" class="flex items-center justify-center space-x-3 text-gray-700 hover:text-purple-700 font-medium transition-colors duration-200 p-2 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-file-alt"></i> <span>Resume</span>
+                    </a></li>
+                    <li><a href="#skills" class="flex items-center justify-center space-x-3 text-gray-700 hover:text-purple-700 font-medium transition-colors duration-200 p-2 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-code"></i> <span>My Skills</span>
+                    </a></li>
+                </ul>
+            </nav>
+
+            <div class="flex justify-center space-x-4 mb-8">
+                <a href="https://in.linkedin.com/in/nisargmerai" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-purple-700 text-2xl transition-colors duration-200" aria-label="LinkedIn Profile">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:merainisarg@gmail.com" class="text-gray-600 hover:text-purple-700 text-2xl transition-colors duration-200" aria-label="Email Nisarg Merai">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <!-- Add more social icons as needed -->
+            </div>
+
+            <button class="bg-purple-700 text-white py-3 px-6 rounded-full shadow-lg hover:bg-purple-800 transition-colors duration-200">
+                <i class="fas fa-download mr-2"></i> Download CV
+            </button>
+        </aside>
+
+        <!-- Content Area / Right Column -->
+        <main class="content-area">
+            <!-- About Section -->
+            <section id="about" class="content-card">
+                <h2 class="section-title">About Me</h2>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    A highly skilled and results-oriented Systems Engineer and Data Engineer with extensive experience in developing robust data pipelines,
+                    optimizing web applications, and leveraging cloud services to create scalable solutions. Proven ability to lead teams, automate workflows,
+                    and implement cutting-edge technologies in data processing, backend development, and augmented reality.
+                    Passionate about delivering high-quality, efficient, and secure software solutions.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700">
+                    <div><strong>Name:</strong> Nisarg Merai</div>
+                    <div><strong>Email:</strong> <a href="mailto:merainisarg@gmail.com" class="text-purple-600 hover:underline">merainisarg@gmail.com</a></div>
+                    <div><strong>Phone:</strong> +917567081381</div>
+                    <div><strong>Location:</strong> Pune, India</div>
+                    <div><strong>LinkedIn:</strong> <a href="https://in.linkedin.com/in/nisargmerai" target="_blank" rel="noopener noreferrer" class="text-purple-600 hover:underline">in.linkedin.com/in/nisargmerai</a></div>
+                </div>
+            </section>
+
+            <!-- Resume Section -->
+            <section id="resume" class="content-card">
+                <h2 class="section-title">Resume</h2>
+
+                <!-- Experience Sub-section -->
+                <h3 class="text-2xl font-semibold text-gray-800 mb-6">Experience</h3>
+                <div class="space-y-8">
+                    <!-- Experience Item: Tata Consultancy Services -->
+                    <div class="experience-item relative pl-8">
+                        <div class="absolute left-0 top-0 w-4 h-4 bg-purple-700 rounded-full flex items-center justify-center">
+                            <i class="fas fa-briefcase text-white text-xs"></i>
+                        </div>
+                        <div class="border-l-2 border-gray-200 absolute left-2 top-0 bottom-0"></div>
+                        <p class="text-sm text-gray-500 mb-1">August 2022 - Present</p>
+                        <h3 class="text-xl font-semibold mb-1">Data Engineer - Python Developer (SE)</h3>
+                        <p class="text-lg text-purple-600 mb-3">Tata Consultancy Services</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Developed data pipelines using Azure Data Factory (ADF) for seamless integration and transformation, ensuring high-quality data flow into Azure Data Lake.</li>
+                            <li>Built scalable data processing workflows on Databricks for efficient big data analysis.</li>
+                            <li>Automated workflows and streamlined data processing tasks with Azure Functions, improving system efficiency and reducing manual efforts.</li>
+                            <li>Developed and maintained backend systems using Python & DRF, optimizing the performance and scalability of web applications.</li>
+                            <li>Designed and implemented RESTful APIs to improve communication between frontend and backend systems, enhancing user experience.</li>
+                            <li>Conducted unit and integration tests to ensure software reliability, and enforced security standards with Checkmarx and SonarQube for code quality and vulnerability assessments.</li>
+                            <li>Led migration and deployment of applications to Microsoft Azure, leveraging cloud services to create scalable and high-performance solutions.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Experience Item: Lemon Technologies Pvt. Ltd. -->
+                    <div class="experience-item relative pl-8">
+                        <div class="absolute left-0 top-0 w-4 h-4 bg-purple-700 rounded-full flex items-center justify-center">
+                            <i class="fas fa-briefcase text-white text-xs"></i>
+                        </div>
+                        <div class="border-l-2 border-gray-200 absolute left-2 top-0 bottom-0"></div>
+                        <p class="text-sm text-gray-500 mb-1">July 2020 - July 2022</p>
+                        <h3 class="text-xl font-semibold mb-1">Senior Python Developer</h3>
+                        <p class="text-lg text-purple-600 mb-3">Lemon Technologies Pvt. Ltd.</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Combined two roles: Senior Python Developer and Team Leader.</li>
+                            <li>Extensive knowledge of Python, Django, REST APIs.</li>
+                            <li>Experience with Design, code, debug operations, reporting, data analysis and web applications utilizing Python.</li>
+                            <li>Piloted the automation segment in the firm and developed various bots operating on web scraping, data manipulation, ERP automation, machine learning, RPA, etc.</li>
+                            <li>Developed web-based products in Django that multiple clients widely use for E-Invoice generation, Auditing Tools, and GST-ITC Reconciliation.</li>
+                            <li>Good working experience in using version control systems.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Experience Item: SPEC INDIA -->
+                    <div class="experience-item relative pl-8">
+                        <div class="absolute left-0 top-0 w-4 h-4 bg-purple-700 rounded-full flex items-center justify-center">
+                            <i class="fas fa-briefcase text-white text-xs"></i>
+                        </div>
+                        <div class="border-l-2 border-gray-200 absolute left-2 top-0 bottom-0"></div>
+                        <p class="text-sm text-gray-500 mb-1">September 2019 - June 2020</p>
+                        <h3 class="text-xl font-semibold mb-1">Software Developer</h3>
+                        <p class="text-lg text-purple-600 mb-3">SPEC INDIA</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Worked as an Android Developer and created a "Face Tracking" application based on Augmented Reality which traces human face in real-time and plots 130 landmarks including eyes, nose, and ears.</li>
+                            <li>Upgraded the "Face Tracking" app to an "AR Jewelry" app wherein a user can try various ornaments (earrings, nose-rings, necklaces) virtually through Augmented Reality and order the suitable ones.</li>
+                            <li>Examined and implemented various technologies like Vuforia, Google Vision, Firebase ML, and TensorFlow lite.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Experience Item: Moodcafe -->
+                    <div class="experience-item relative pl-8">
+                        <div class="absolute left-0 top-0 w-4 h-4 bg-purple-700 rounded-full flex items-center justify-center">
+                            <i class="fas fa-briefcase text-white text-xs"></i>
+                        </div>
+                        <div class="border-l-2 border-gray-200 absolute left-2 top-0 bottom-0"></div>
+                        <p class="text-sm text-gray-500 mb-1">January 2019 - May 2019</p>
+                        <h3 class="text-xl font-semibold mb-1">Android Developer Intern</h3>
+                        <p class="text-lg text-purple-600 mb-3">Moodcafe</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Awarded with "Accelerated Growth" title for an incredible advancement in performance and efforts.</li>
+                            <li>Led the Android team and planned out upcoming app releases.</li>
+                            <li>Implemented various features like persistent socket connection, Google Analytics, OTP verification, and Google Sign-In.</li>
+                            <li>Made the application more stable by limiting the number of app crashes which helped in the increment of app downloads.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Education Sub-section -->
+                <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-6">Education</h3>
+                <div class="space-y-8">
+                    <div>
+                        <p class="text-sm text-gray-500 mb-1">2019</p>
+                        <h3 class="text-xl font-semibold mb-1">Bachelor of Technology in Information Technology</h3>
+                        <p class="text-lg text-purple-600">Nirma University, Ahmedabad, India</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500 mb-1">2014</p>
+                        <h3 class="text-xl font-semibold mb-1">Higher Secondary Education</h3>
+                        <p class="text-lg text-purple-600">AB Higher Secondary School, Navsari, India</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500 mb-1">2012</p>
+                        <h3 class="text-xl font-semibold mb-1">Secondary Education</h3>
+                        <p class="text-lg text-purple-600">St. Joseph's E.T High School, Bilimora, India</p>
+                    </div>
+                </div>
+
+                <!-- Skills Sub-section without Progress Bars -->
+                <h3 id="skills" class="text-2xl font-semibold text-gray-800 mt-10 mb-6">My Skills</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
+                    <div class="skill-category">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">Data Engineering</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Azure Data Factory (ADF)</li>
+                            <li>Azure Databricks</li>
+                            <li>ETL Pipelines</li>
+                            <li>Big Data Processing (Apache Spark, PySpark)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">Programming Language</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Python (3.x)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">Cloud Computing</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Microsoft Azure</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">Database</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>MySQL</li>
+                            <li>PostgreSQL</li>
+                            <li>MongoDB</li>
+                            <li>Azure Data Lake</li>
+                            <li>Databricks (Delta Lake)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">Back-end</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Django (Django Rest Framework)</li>
+                            <li>Flask</li>
+                            <li>FastAPI</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">Data Manipulation & Analysis</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Pandas</li>
+                            <li>Numpy</li>
+                            <li>Matplotlib</li>
+                            <li>Apache Spark</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">Front-end</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>HTML5</li>
+                            <li>CSS3</li>
+                            <li>JavaScript</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">Version Control</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Git</li>
+                            <li>GitHub</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">Computer Vision & ML</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>OpenCV</li>
+                            <li>TensorFlow</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">Automation & Testing</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Selenium</li>
+                            <li>Automation Anywhere</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">Project Management</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Agile/Scrum Methodology</li>
+                            <li>Jira</li>
+                            <li>Confluence</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">Other</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Docker</li>
+                            <li>RESTful APIs</li>
+                            <li>OAuth2</li>
+                            <li>JSON Web Tokens (JWT)</li>
+                            <li>Microservices Architecture</li>
+                            <li>Augmented Reality (AR)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="text-center py-6 text-gray-600 text-sm">
+                <p>&copy; 2025 Nisarg Merai. All rights reserved.</p>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
