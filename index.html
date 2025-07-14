@@ -118,6 +118,8 @@
         .profile-img {
             border: 5px solid #ffd700; /* Golden border */
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Stronger shadow for dark theme */
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+            object-position: center; /* Centers the image within its content box */
         }
 
         /* Text colors for various elements - overridden to white/light gray */
@@ -143,7 +145,7 @@
         <aside class="sidebar">
             <div class="mb-8">
                 <!-- Profile image with enhanced styling -->
-                <img src="https://placehold.co/150x150/333/ffd700?text=Profile" alt="Nisarg Merai" class="rounded-full mx-auto mb-4 shadow-lg profile-img">
+                <img src="media/file_0000000096a0622f8791e631104cf619.png" alt="Nisarg Merai" class="rounded-full mx-auto mb-4 shadow-lg profile-img w-40 h-40">
                 <h2 class="text-3xl font-bold text-gray-800 mb-2">Nisarg Merai</h2>
                 <p class="text-lg text-gray-600">Systems Engineer - Data Engineer</p>
             </div>
@@ -172,9 +174,9 @@
                 <!-- Add more social icons as needed -->
             </div>
 
-            <button class="bg-purple-700 text-white py-3 px-6 rounded-full shadow-lg hover:bg-purple-800 transition-colors duration-200">
+            <a href="https://drive.google.com/file/d/1JJJHjd6S43Eba3qxnRaZeY-xR27RsIFo/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="block bg-purple-700 text-white py-3 px-6 rounded-full shadow-lg hover:bg-purple-800 transition-colors duration-200">
                 <i class="fas fa-download mr-2"></i> Download CV
-            </button>
+            </a>
         </aside>
 
         <!-- Content Area / Right Column -->
